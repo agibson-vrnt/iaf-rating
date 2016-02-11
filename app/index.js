@@ -10,12 +10,13 @@ var logging = require( "./middleware/logging" );
 var requestMetadata = require( "./middleware/request-metadata" );
 
 // route builders
-var routeBuilders = {
+var routeBuilders = [
 
-    partialsLoader: require( "./routes/partials-loader" ),
-    root: require( "./routes/root" )
+    require( "./routes/partials-loader" ),
+    require( "./routes/root" ),
+    require( "./routes/partials" )
 
-};
+];
 
 var express = require( "express" );
 var app = express();
@@ -35,8 +36,7 @@ iafScriptEval.fetch( app, config, ( err ) => {
     var renderPartials = require( "./render-partials" );
     app.use( renderPartials );
     // register routes
-    routeBuilders.partialsLoader.configure( app, config );
-    routeBuilders.root.configure( app, config );
+    routeBuilders.forEach( route => route.configure( app, config ) );
     // listen
     app.listen( config.port, () => console.log( "Listening on", config.port ) ); // eslint-disable-line no-console
 

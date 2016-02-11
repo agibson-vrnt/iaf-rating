@@ -3,7 +3,7 @@ module.exports = {
 
 	configure: ( app ) => {
 
-		app.get( "/", ( req, res ) => res.render( "Main" ) );
+		app.get( "/", ( req, res ) => res.render( "index", {} ) );
 
 	}
 

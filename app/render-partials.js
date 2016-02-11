@@ -4,23 +4,30 @@ var partials = require( "./public/js/bundle.js" ).default;
 
 module.exports = ( req, res, next ) => {
 
-    var renderView = res.render.bind( res );
-    res.render = ( partialName, partialModel, viewOptions ) => {
+    res.renderPartialPage = ( partialName, partialModel, viewOptions ) => {
 
+        viewOptions = viewOptions || {};
+        var partial = res.renderPartial( partialName, partialModel, viewOptions.partialId );
+        viewOptions.model = Object.assign( {}, viewOptions.model, { partial: partial } );
+        viewOptions.view = viewOptions.view || "partial-page";
+        res.render( viewOptions.view, viewOptions.model );
+
+    };
+    res.renderPartial = ( partialName, partialModel, partialId ) => {
+
+        partialId = partialId || "iaf565656565";
         var partial = partials[ partialName ];
         var iaf = global.iaf.rating.iaf;
         if( !partial ) { throw new Error( "Unable to find partial view " + partialName ); }
         var element = iaf.React.createElement( partial, partialModel );
+        return {
 
-        viewOptions = viewOptions || {};
+            name: partialName,
+            id: partialId,
+            html: iaf.ReactServer.renderToString( element ),
+            js: "iaf.rating.bootstrapPartial( \"Main\", \"#" + partialId + "\" );"
 
-        viewOptions.model = viewOptions.model || {};
-        viewOptions.model.partialId = viewOptions.model.partialId || "iaf565656565";
-        viewOptions.model.partialHTML = iaf.ReactServer.renderToString( element );
-        viewOptions.model.partialScript = "iaf.rating.bootstrapPartial( \"Main\", \"#" + viewOptions.model.partialId + "\" );";
-
-        viewOptions.view = viewOptions.view || "index";
-        renderView( viewOptions.view, viewOptions.model );
+        };
 
     };
     next();
