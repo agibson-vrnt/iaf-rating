@@ -19,16 +19,6 @@ module.exports = {
 
         } );
 
-        app.get( "/quotes/add", ( req, res ) => {
-
-            req.negotiate(
-
-                [ TEXT_HTML, () => res.render( "quotes-add" ) ]
-
-            );
-
-        } );
-
     }
 
 };
