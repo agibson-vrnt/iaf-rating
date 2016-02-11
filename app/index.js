@@ -14,6 +14,7 @@ var partials = {}; // we populate this later on
 // middleware
 var logging = require( "./middleware/logging" );
 var requestMetadata = require( "./middleware/request-metadata" );
+var negotiate = require( "./middleware/negotiate" );
 var renderPartials = require( "./middleware/render-partials" )( config, loaderFactory, partials );
 
 // route builders
@@ -21,7 +22,8 @@ var routeBuilders = [
 
     require( "./routes/partials-loader" ),
     require( "./routes/root" ),
-    require( "./routes/partials" )
+    require( "./routes/partials" ),
+    require( "./routes/quotes" )
 
 ];
 
@@ -33,6 +35,8 @@ app.use( "/public", express.static( __dirname + "/public" ) );
 app.use( requestMetadata );
 // logs requests
 app.use( logging );
+// negoatiate handlers
+app.use( negotiate );
 // partial rendering middleware
 app.use( renderPartials );
 // configure the view engine

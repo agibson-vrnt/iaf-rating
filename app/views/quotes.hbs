@@ -1,0 +1,10 @@
+<h1>Ratings service</h1>
+
+<h3>Check out our quotes!</h3>
+<a href="/quotes/add">Request a new quote</a>
+
+<ul>
+	{{#quotes}}
+	<li><a href="/quotes/{{.}}">{{.}}</a></li>
+	{{/quotes}}
+</ul>
