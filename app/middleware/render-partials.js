@@ -40,7 +40,7 @@ module.exports = ( config, loaderFactory, partials ) => ( req, res, next ) => {
             name: partialName,
             id: containerId,
             html: renderPartialToHTML( partial, partialModel ),
-            js: { "start": "iaf.rating.bootstrapPartial( \"Main\", \"#" + containerId + "\" );" }
+            js: { "start": "iaf[ \"" + config.ns + "\"].bootstrapPartial( \"" + partialName + "\", \"#" + containerId + "\" );" }
 
         };
 
