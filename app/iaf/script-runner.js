@@ -13,7 +13,8 @@ module.exports = {
             var success = vm.runInNewContext( body, sandbox );
             if( !success ) { throw new Error( "Failed to evaluate iaf script" ); }
             var iaf = sandbox.default;
-            global.iaf = { rating: { iaf: iaf } };
+            global.iaf = { };
+            global.iaf[ config.ns ] = { iaf: iaf };
             callback();
 
         } );

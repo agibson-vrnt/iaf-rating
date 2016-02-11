@@ -2,6 +2,7 @@
 module.exports = {
 
     port: 8080,
+    ns: "rating",
     iaf: {
 
         loaderTemplate: "http://localhost:8081/public/js/loader-template.js",

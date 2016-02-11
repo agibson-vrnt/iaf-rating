@@ -1,4 +1,5 @@
 /*eslint-env node*/
+/*eslint-disable no-underscore-dangle*/// -- this is a handlebars convention
 
 var expressHandlebars = require( "express-handlebars" );
 
@@ -18,7 +19,7 @@ module.exports = {
 
                     var blocks = this._blocks;
                     var content = blocks && blocks[name];
-                    return content ? content.join('\n') : null;
+                    return content ? content.join( "\n" ) : null;
                 },
                 content: function(name, options){
 

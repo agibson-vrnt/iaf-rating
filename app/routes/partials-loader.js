@@ -1,6 +1,6 @@
 /*eslint-env node*/
 
-var loaderFactory = require( "../loader-factory" );
+var loaderFactory = require( "../iaf/loader-factory" );
 
 module.exports = {
 

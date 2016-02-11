@@ -15,7 +15,7 @@ module.exports = {
 				var template = handlebars.compile( body );
 				callback( null, template( {
 
-					"namespace": "rating",
+					"namespace": config.ns,
 					"iaf-url": config.iaf.url,
 					"iaf-version": config.iaf.version,
 					"partials-url": publicRoot + "/js/bundle.js"

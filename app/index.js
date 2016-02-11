@@ -2,12 +2,19 @@
 var config = require( "./config" );
 
 // utils
-var iafScriptEval = require( "./iaf-script-eval" );
 var viewEngineConfig = require( "./view-engine-config" );
+
+// iaf stuff
+var iafScriptEval = require( "./iaf/script-runner" );
+var loaderFactory = require( "./iaf/loader-factory" );
+
+// index of partials
+var partials = {}; // we populate this later on
 
 // middleware
 var logging = require( "./middleware/logging" );
 var requestMetadata = require( "./middleware/request-metadata" );
+var renderPartials = require( "./middleware/render-partials" )( config, loaderFactory, partials );
 
 // route builders
 var routeBuilders = [
@@ -26,15 +33,16 @@ app.use( "/public", express.static( __dirname + "/public" ) );
 app.use( requestMetadata );
 // logs requests
 app.use( logging );
+// partial rendering middleware
+app.use( renderPartials );
 // configure the view engine
 viewEngineConfig.configure( app, config );
 // fetch and evaluate the iaf scripts
 iafScriptEval.fetch( app, config, ( err ) => {
 
     if( err ) { throw err; }
-    // now that iaf script is loaded, we can require the partials renderer
-    var renderPartials = require( "./render-partials" );
-    app.use( renderPartials );
+    // now that iaf script is loaded, we can pull in the partials
+    Object.assign( partials, require( "./public/js/bundle.js" ).default );
     // register routes
     routeBuilders.forEach( route => route.configure( app, config ) );
     // listen
