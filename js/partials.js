@@ -1,10 +1,8 @@
 /*eslint-env browser*/
 import Main from "./jsx/Main.jsx";
-var partials = {
+import AddAQuote from "./jsx/AddAQuote.jsx";
 
-	Main: Main
-
-};
+var partials = { Main, AddAQuote };
 
 // export as client-side namespace
 if( typeof window !== "undefined" && window.iaf && window.iaf.rating ) {

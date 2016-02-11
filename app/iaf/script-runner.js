@@ -10,8 +10,7 @@ module.exports = {
         request( config.iaf.serverUrl, ( err, response, body ) => {
 
             var sandbox = {};
-            var success = vm.runInNewContext( body, sandbox );
-            if( !success ) { throw new Error( "Failed to evaluate iaf script" ); }
+            vm.runInNewContext( body, sandbox );
             var iaf = sandbox.default;
             global.iaf = { };
             global.iaf[ config.ns ] = { iaf: iaf };

@@ -9,7 +9,6 @@ module.exports = ( config, loaderFactory, partials ) => ( req, res, next ) => {
         return iaf.ReactServer.renderToString( element );
 
     }
-
     res.renderPartialPage = ( partialName, partialModel, viewOptions ) => {
 
         viewOptions = viewOptions || {};
@@ -34,7 +33,7 @@ module.exports = ( config, loaderFactory, partials ) => ( req, res, next ) => {
     res.buildPartial = ( partialName, partialModel, containerId ) => {
 
         var partial = partials[ partialName ];
-        if( !partial ) { throw new Error( "Unable to find partial view " + partialName ); }
+        if( !partial ) { throw new Error( "Unable to find partial: " + partialName ); }
         return {
 
             name: partialName,

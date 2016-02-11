@@ -23,7 +23,7 @@ module.exports = {
 
             req.negotiate(
 
-                [ TEXT_HTML, () => res.render( "quotes-add" ) ]
+                [ TEXT_HTML, () => res.renderPartialPage( "AddAQuote", null, { model: { title: "Add a quote" } } ) ]
 
             );
 

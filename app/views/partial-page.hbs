@@ -4,7 +4,7 @@
 
 {{/content }}
 
-<h1>{{partial.name}}</h1>
+<h1>{{#if title}}{{title}}{{else}}{{partial.name}}{{/if}}</h1>
 
 <section id="{{partial.id}}">{{{partial.html}}}</section>
 <script>
