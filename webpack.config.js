@@ -6,8 +6,7 @@ module.exports = {
 
     entry: {
 
-        "public/js/bundle": path.resolve( __dirname, "js/partials.js" ),
-        "public/js/bundle-loader": path.resolve( __dirname, "lib/partials-loader.js" )
+        "public/js/bundle": path.resolve( __dirname, "js/partials.js" )
 
     },
     output: {

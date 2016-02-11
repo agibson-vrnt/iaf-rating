@@ -5,22 +5,17 @@ var config = {
     port: 8080,
     iaf: {
 
+        loaderTemplate: "http://localhost:8081/public/js/loader-template.js",
         url: "http://localhost:8081/public/js/iaf-1.0.0-client.js",
         serverUrl: "http://localhost:8081/public/js/iaf-1.0.0-server.js",
-        version: "1.0.0",
-        partials: {
-            loader: {
-                url: "http://localhost:8081/public/js/iaf-partials-loader.js"
-            }
-        }
-
+        version: "1.0.0"
     }
 
 };
 
 var express = require( "express" );
 var expressHandlebars = require( "express-handlebars" );
-var clientConfigBuilder = require( "./client-config" );
+var loaderFactory = require( "./loader-factory" );
 var async = require( "async" );
 var request = require( "request" );
 var vm = require( "vm" );
@@ -47,14 +42,16 @@ app.use( ( req, res, next ) => {
     next();
 
 } );
-app.get( "/client-config.js", ( req, res ) => {
+app.get( "/partials-loader", ( req, res ) => {
 
-    var clientConfig = clientConfigBuilder( config, req.fullSchemeAndHost + "/public" );
-    res.type( "application/javascript" ).send( clientConfig );
+    loaderFactory.build( config, req.fullSchemeAndHost + "/public", ( err, loader ) => {
+
+        if( err ) { throw err; }
+        res.type( "application/javascript" ).send( loader );
+
+    } );
 
 } );
-
-
 async.waterfall( [
 
     ( next ) => request( config.iaf.serverUrl, next ),

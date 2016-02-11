@@ -1,4 +1,4 @@
-import { React } from "../../lib/iaf";
+import { React } from "../iaf";
 
 export default class HelloWorld extends React.Component {
 
