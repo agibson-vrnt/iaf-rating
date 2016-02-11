@@ -11,14 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "async": "^1.5.2",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.0.5",
     "hogan-express": "^0.5.2",
     "negotiator": "^0.6.0",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
     "request": "^2.69.0"
   },
   "devDependencies": {
