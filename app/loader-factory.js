@@ -2,37 +2,17 @@
 
 var handlebars = require( "handlebars" );
 var request = require( "request" );
-var cachedTemplate;
+
 module.exports = {
 
 	build: function build( config, publicRoot, callback ) {
 
-		function fetchTemplate( next ) {
-
-			if( cachedTemplate ) { next( null, cachedTemplate ); }
-			else {
-
-				request( config.iaf.loaderTemplate, ( err, response, body ) => {
-
-					if( err ) { next( err ); }
-					else {
-
-						var uncachedTemplate = handlebars.compile( body );
-						next( null, uncachedTemplate );
-
-					}
-
-				} );
-
-			}
-
-		}
-
-		fetchTemplate( ( err, template ) => {
+		request( config.iaf.loaderTemplate, ( err, response, body ) => {
 
 			if( err ) { callback( err ); }
 			else {
 
+				var template = handlebars.compile( body );
 				callback( null, template( {
 
 					"namespace": "rating",
