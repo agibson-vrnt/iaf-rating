@@ -9,6 +9,7 @@ export default class DeleteQuote extends React.Component {
 		var quote = this.props.quote;
 		if( quote ) {
 
+			quote.when = new Date( quote.when );
 			return <div>
 
 				<ShowQuote quote={this.props.quote} />

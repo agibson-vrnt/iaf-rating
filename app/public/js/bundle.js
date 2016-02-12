@@ -891,6 +891,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				var quote = this.props.quote;
 				if (quote) {
 
+					quote.when = new Date(quote.when);
 					return _iaf.React.createElement(
 						"div",
 						null,
