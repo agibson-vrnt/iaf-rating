@@ -1,38 +1,43 @@
 
-import { React, ReactRedux, Redux } from "../iaf";
+import { React, ReactRedux, Redux, ReduxThunk } from "../iaf";
 import AddQuoteContainer from "./controls/AddQuoteContainer.jsx";
+import * as actionCreators from "./action-creators/quote-action-creators";
 
-let Provider = ReactRedux.Provider;
+var Provider = ReactRedux.Provider;
+var applyMiddleware = Redux.applyMiddleware;
+var thunkMiddleware = ReduxThunk.thunkMiddleware;
 
-var store = Redux.createStore(
+import quoteReducers from "./reducers/quote-reducers";
 
-	( state = {}, action ) => {
+export default class AddAQuote extends React.Component {
 
-		switch( action.type ) {
+	componentWillMount() {
 
-			case "select-product":
-				return {
-					...state,
-					products: {
+		var initialState = { products: { available: this.props.catalogue.slice() } };
+		this.partialStore = Redux.createStore(
 
-						...state.products,
-						selected: action.id
+			quoteReducers,
+			initialState,
+			applyMiddleware( thunkMiddleware )
 
-					},
-					terms: {
+		);
+		if( this.props.product ) {
 
-						available: [ [ 12, "1 year" ], [ 24, "2 years" ] ]
+			this.partialStore.dispatch( actionCreators.selectProduct( this.props.product ) );
 
-					}
+		}
+		if( this.props.term ) {
 
-				};
-			default:
-				return state;
+			this.partialStore.dispatch( actionCreators.selectTerm( this.props.term ) );
 
 		}
 
 	}
 
-);
+	render() {
 
-export default () => <Provider store={store}><AddQuoteContainer /></Provider>;
+		return <Provider store={this.partialStore}><AddQuoteContainer /></Provider>;
+
+	}
+
+}

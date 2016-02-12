@@ -1,10 +1,9 @@
-<h1>Ratings service</h1>
+{{>partial-page}}
 
-<h3>Check out our quotes!</h3>
-<a href="/quotes/add">Request a new quote</a>
+<p>
+	<a href="/quotes/add" class="btn btn-primary">
+		<span class="glyphicon glyphicon-gbp" style="min-width: 1em;"></span>
+		New quote
+	</a>
+<p>
 
-<ul>
-	{{#quotes}}
-	<li><a href="/quotes/{{.}}">{{.}}</a></li>
-	{{/quotes}}
-</ul>

@@ -68,14 +68,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _AddAQuote2 = _interopRequireDefault(_AddAQuote);
 
+	var _RetrieveQuote = __webpack_require__(14);
+
+	var _RetrieveQuote2 = _interopRequireDefault(_RetrieveQuote);
+
+	var _DeleteQuote = __webpack_require__(16);
+
+	var _DeleteQuote2 = _interopRequireDefault(_DeleteQuote);
+
+	var _ListQuotes = __webpack_require__(18);
+
+	var _ListQuotes2 = _interopRequireDefault(_ListQuotes);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	/*eslint-env browser*/
-
-
-	var partials = { Main: _Main2.default, AddAQuote: _AddAQuote2.default };
+	var partials = { Main: _Main2.default, AddAQuote: _AddAQuote2.default, RetrieveQuote: _RetrieveQuote2.default, DeleteQuote: _DeleteQuote2.default, ListQuotes: _ListQuotes2.default };
 
 	// export as client-side namespace
+	/*eslint-env browser*/
 	if (typeof window !== "undefined" && window.iaf && window.iaf.rating) {
 
 		window.iaf.rating.partials = partials;
@@ -167,7 +177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _iaf = __webpack_require__(2);
 
@@ -175,43 +185,68 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _AddQuoteContainer2 = _interopRequireDefault(_AddQuoteContainer);
 
+	var _quoteActionCreators = __webpack_require__(11);
+
+	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
+
+	var _quoteReducers = __webpack_require__(13);
+
+	var _quoteReducers2 = _interopRequireDefault(_quoteReducers);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var Provider = _iaf.ReactRedux.Provider;
+	var applyMiddleware = _iaf.Redux.applyMiddleware;
+	var thunkMiddleware = _iaf.ReduxThunk.thunkMiddleware;
 
-	var store = _iaf.Redux.createStore(function () {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-		var action = arguments[1];
+	var AddAQuote = function (_React$Component) {
+		_inherits(AddAQuote, _React$Component);
 
+		function AddAQuote() {
+			_classCallCheck(this, AddAQuote);
 
-		switch (action.type) {
-
-			case "select-product":
-				return _extends({}, state, {
-					products: _extends({}, state.products, {
-						selected: action.id
-
-					}),
-					terms: {
-
-						available: [[12, "1 year"], [24, "2 years"]]
-
-					}
-
-				});
-			default:
-				return state;
-
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(AddAQuote).apply(this, arguments));
 		}
-	});
 
-	exports.default = function () {
-		return _iaf.React.createElement(
-			Provider,
-			{ store: store },
-			_iaf.React.createElement(_AddQuoteContainer2.default, null)
-		);
-	};
+		_createClass(AddAQuote, [{
+			key: "componentWillMount",
+			value: function componentWillMount() {
+
+				var initialState = { products: { available: this.props.catalogue.slice() } };
+				this.partialStore = _iaf.Redux.createStore(_quoteReducers2.default, initialState, applyMiddleware(thunkMiddleware));
+				if (this.props.product) {
+
+					this.partialStore.dispatch(actionCreators.selectProduct(this.props.product));
+				}
+				if (this.props.term) {
+
+					this.partialStore.dispatch(actionCreators.selectTerm(this.props.term));
+				}
+			}
+		}, {
+			key: "render",
+			value: function render() {
+
+				return _iaf.React.createElement(
+					Provider,
+					{ store: this.partialStore },
+					_iaf.React.createElement(_AddQuoteContainer2.default, null)
+				);
+			}
+		}]);
+
+		return AddAQuote;
+	}(_iaf.React.Component);
+
+	exports.default = AddAQuote;
 
 /***/ },
 /* 4 */,
@@ -224,6 +259,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -245,20 +282,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var HelloWorld = function (_React$Component) {
-		_inherits(HelloWorld, _React$Component);
+	var AddQuote = function (_React$Component) {
+		_inherits(AddQuote, _React$Component);
 
-		function HelloWorld(props) {
-			_classCallCheck(this, HelloWorld);
+		function AddQuote(props) {
+			_classCallCheck(this, AddQuote);
 
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HelloWorld).call(this, props));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddQuote).call(this, props));
 
 			_this.state = {};
 
 			return _this;
 		}
 
-		_createClass(HelloWorld, [{
+		_createClass(AddQuote, [{
 			key: "renderTermSelector",
 			value: function renderTermSelector() {
 				var available = this.props.available;
@@ -278,10 +315,60 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			}
 		}, {
+			key: "renderAdvice",
+			value: function renderAdvice(isReady) {
+
+				if (isReady) {
+					return null;
+				}
+				var advice = this.props.available ? "term" : "product";
+				return _iaf.React.createElement(
+					"p",
+					{ className: "bg-info " },
+					_iaf.React.createElement("span", { className: "glyphicon glyphicon-info-sign", "aria-hidden": "true" }),
+					" Select a ",
+					advice,
+					" to complete your request"
+				);
+			}
+		}, {
+			key: "renderSubmitButton",
+			value: function renderSubmitButton(isReady, isDisabled) {
+
+				var attributes = {};
+				if (isDisabled) {
+					attributes.disabled = "disabled";
+				}
+				return _iaf.React.createElement("input", _extends({ type: "submit", value: "Submit", className: "btn btn-" + (isReady ? "primary" : "default") }, attributes));
+			}
+		}, {
+			key: "renderSubmit",
+			value: function renderSubmit() {
+				var selected = this.props.selected;
+
+				var isReady = !!selected;
+				var isDisabled = this.state.isClient && !isReady;
+				return _iaf.React.createElement(
+					"div",
+					null,
+					this.renderAdvice(isReady),
+					!isDisabled && this.renderSubmitButton(isReady, isDisabled)
+				);
+			}
+		}, {
+			key: "componentDidMount",
+			value: function componentDidMount() {
+
+				if (typeof window !== "undefined") {
+
+					this.setState({ isClient: true });
+					this.forceUpdate();
+				}
+			}
+		}, {
 			key: "render",
 			value: function render() {
 
-				console.log(this.props);
 				return _iaf.React.createElement(
 					"form",
 					{ method: "POST" },
@@ -296,15 +383,15 @@ return /******/ (function(modules) { // webpackBootstrap
 						_iaf.React.createElement(_ProductSelectorContainer2.default, null)
 					),
 					this.renderTermSelector(),
-					_iaf.React.createElement("input", { type: "submit", value: "Submit", className: "btn btn-default" })
+					this.renderSubmit()
 				);
 			}
 		}]);
 
-		return HelloWorld;
+		return AddQuote;
 	}(_iaf.React.Component);
 
-	exports.default = HelloWorld;
+	exports.default = AddQuote;
 
 /***/ },
 /* 7 */
@@ -379,20 +466,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var HelloWorld = function (_React$Component) {
-		_inherits(HelloWorld, _React$Component);
+	var ProductSelector = function (_React$Component) {
+		_inherits(ProductSelector, _React$Component);
 
-		function HelloWorld(props) {
-			_classCallCheck(this, HelloWorld);
+		function ProductSelector(props) {
+			_classCallCheck(this, ProductSelector);
 
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HelloWorld).call(this, props));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProductSelector).call(this, props));
 
 			_this.state = {};
 
 			return _this;
 		}
 
-		_createClass(HelloWorld, [{
+		_createClass(ProductSelector, [{
 			key: "handleChange",
 			value: function handleChange() {
 
@@ -400,14 +487,24 @@ return /******/ (function(modules) { // webpackBootstrap
 				this.props.selectProduct(product);
 			}
 		}, {
+			key: "renderProduct",
+			value: function renderProduct(product) {
+
+				return _iaf.React.createElement(
+					"option",
+					{ key: product.value, value: product.value },
+					product.text
+				);
+			}
+		}, {
 			key: "render",
 			value: function render() {
 				var _this2 = this;
 
-				console.log(this.props.selected);
+				var selected = this.props.selected ? this.props.selected.value : "";
 				return _iaf.React.createElement(
 					"select",
-					{ ref: "product", name: "product", className: "form-control", defaultValue: this.props.selected || "", onChange: function onChange(e) {
+					{ ref: "product", name: "product", className: "form-control", value: selected, onChange: function onChange(e) {
 							return _this2.handleChange(e);
 						} },
 					_iaf.React.createElement(
@@ -415,24 +512,17 @@ return /******/ (function(modules) { // webpackBootstrap
 						{ value: "", disabled: true },
 						"-- select a product --"
 					),
-					_iaf.React.createElement(
-						"option",
-						{ value: "standard" },
-						"Standard"
-					),
-					_iaf.React.createElement(
-						"option",
-						{ value: "premium" },
-						"Premium"
-					)
+					this.props.available.map(function (p) {
+						return _this2.renderProduct(p);
+					})
 				);
 			}
 		}]);
 
-		return HelloWorld;
+		return ProductSelector;
 	}(_iaf.React.Component);
 
-	exports.default = HelloWorld;
+	exports.default = ProductSelector;
 
 /***/ },
 /* 9 */
@@ -441,8 +531,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
+
+	var _quoteActionCreators = __webpack_require__(11);
+
+	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
 	var _iaf = __webpack_require__(2);
 
@@ -452,19 +546,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 	// a mapper for converting the state tree to just the part our widget requires
 	var mapStateToProps = function mapStateToProps(state) {
-	  return state.terms || {};
+		return state.terms || {};
 	};
 
 	// a mapper taking the dispatch method and building methods for our view compoments to call
-	//import * as actionCreators from "../action-creators";
+
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
+		return {
 
-	    //	doIt: () => dispatch( actionCreators.asyncAction() )
+			selectTerm: function selectTerm(id) {
+				return dispatch(actionCreators.selectTerm(id));
+			}
 
-	  };
+		};
 	};
 
 	// importing the connect utility from react-redux - this creates the container for us
@@ -513,42 +611,40 @@ return /******/ (function(modules) { // webpackBootstrap
 		}
 
 		_createClass(TermSelector, [{
-			key: "render",
-			value: function render() {
+			key: "handleChange",
+			value: function handleChange() {
+
+				this.props.selectTerm(this.refs.term.value);
+			}
+		}, {
+			key: "renderTermOption",
+			value: function renderTermOption(term) {
 
 				return _iaf.React.createElement(
+					"option",
+					{ key: term.value, value: term.value },
+					term.text
+				);
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				var _this2 = this;
+
+				var selected = this.props.selected ? this.props.selected.value : "";
+				return _iaf.React.createElement(
 					"select",
-					{ name: "term", className: "form-control", defaultValue: "" },
+					{ ref: "term", name: "term", className: "form-control", value: selected, onChange: function onChange(e) {
+							return _this2.handleChange(e);
+						} },
 					_iaf.React.createElement(
 						"option",
 						{ value: "", disabled: true },
 						"-- select a term --"
 					),
-					_iaf.React.createElement(
-						"option",
-						{ value: "12" },
-						"1 year"
-					),
-					_iaf.React.createElement(
-						"option",
-						{ value: "24" },
-						"2 years"
-					),
-					_iaf.React.createElement(
-						"option",
-						{ value: "36" },
-						"3 years"
-					),
-					_iaf.React.createElement(
-						"option",
-						{ value: "60" },
-						"5 years"
-					),
-					_iaf.React.createElement(
-						"option",
-						{ value: "120" },
-						"Lifetime"
-					)
+					this.props.available.map(function (term) {
+						return _this2.renderTermOption(term);
+					})
 				);
 			}
 		}]);
@@ -568,9 +664,14 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 	exports.selectProduct = selectProduct;
+	exports.selectTerm = selectTerm;
 	function selectProduct(productId) {
 
 		return { "type": "select-product", "id": productId };
+	}
+	function selectTerm(termId) {
+
+		return { "type": "select-term", "id": termId };
 	}
 
 /***/ },
@@ -617,6 +718,408 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// export the container
 	exports.default = AddQuoteContainer;
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function (state, action) {
+
+		switch (action.type) {
+
+			case "select-product":
+
+				var selectedProduct = state.products.available.find(function (x) {
+					return x.value === action.id;
+				});
+				return _extends({}, state, {
+					products: _extends({}, state.products, {
+						selected: selectedProduct
+
+					}),
+					terms: {
+
+						available: selectedProduct ? selectedProduct.terms.slice() : undefined
+
+					}
+
+				});
+
+			case "select-term":
+				var selectedTerm = state.terms.available.find(function (x) {
+					return x.value === action.id;
+				});
+				return _extends({}, state, {
+					terms: _extends({}, state.terms, {
+						selected: selectedTerm
+
+					})
+
+				});
+
+			default:
+				return state;
+
+		}
+	};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _iaf = __webpack_require__(2);
+
+	var _ShowQuote = __webpack_require__(17);
+
+	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AddAQuote = function (_React$Component) {
+		_inherits(AddAQuote, _React$Component);
+
+		function AddAQuote() {
+			_classCallCheck(this, AddAQuote);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(AddAQuote).apply(this, arguments));
+		}
+
+		_createClass(AddAQuote, [{
+			key: "render",
+			value: function render() {
+
+				var quote = this.props.quote;
+				if (quote) {
+
+					quote.when = new Date(quote.when);
+					return _iaf.React.createElement(
+						"div",
+						null,
+						_iaf.React.createElement(_ShowQuote2.default, { quote: quote }),
+						_iaf.React.createElement(
+							"div",
+							{ className: "well" },
+							_iaf.React.createElement(
+								"a",
+								{ href: "./" + quote.id + "/delete", className: "btn btn-danger" },
+								"Delete"
+							)
+						)
+					);
+				} else {
+
+					return _iaf.React.createElement(
+						"div",
+						null,
+						_iaf.React.createElement(
+							"p",
+							null,
+							"Your quote could not be retrieved. Perhaps it was too good to be true?"
+						)
+					);
+				}
+			}
+		}]);
+
+		return AddAQuote;
+	}(_iaf.React.Component);
+
+	exports.default = AddAQuote;
+
+/***/ },
+/* 15 */,
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _iaf = __webpack_require__(2);
+
+	var _ShowQuote = __webpack_require__(17);
+
+	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var DeleteQuote = function (_React$Component) {
+		_inherits(DeleteQuote, _React$Component);
+
+		function DeleteQuote() {
+			_classCallCheck(this, DeleteQuote);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(DeleteQuote).apply(this, arguments));
+		}
+
+		_createClass(DeleteQuote, [{
+			key: "render",
+			value: function render() {
+
+				var quote = this.props.quote;
+				if (quote) {
+
+					return _iaf.React.createElement(
+						"div",
+						null,
+						_iaf.React.createElement(_ShowQuote2.default, { quote: this.props.quote }),
+						_iaf.React.createElement(
+							"form",
+							{ className: "well", method: "POST" },
+							_iaf.React.createElement(
+								"h4",
+								null,
+								"You are about to delete this quote. Please click to confirm."
+							),
+							_iaf.React.createElement("input", { type: "submit", className: "btn btn-danger", value: "CONFIRM" })
+						),
+						_iaf.React.createElement(
+							"a",
+							{ href: "/quotes" },
+							"Your quotes"
+						)
+					);
+				} else {
+
+					return _iaf.React.createElement(
+						"div",
+						null,
+						_iaf.React.createElement(
+							"p",
+							null,
+							"Your quote has been deleted."
+						),
+						_iaf.React.createElement(
+							"a",
+							{ href: "/quotes" },
+							"Your quotes"
+						)
+					);
+				}
+			}
+		}]);
+
+		return DeleteQuote;
+	}(_iaf.React.Component);
+
+	exports.default = DeleteQuote;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _iaf = __webpack_require__(2);
+
+	exports.default = function (_ref) {
+		var quote = _ref.quote;
+		return _iaf.React.createElement(
+			"table",
+			{ className: "table" },
+			_iaf.React.createElement(
+				"tbody",
+				null,
+				_iaf.React.createElement(
+					"tr",
+					null,
+					_iaf.React.createElement(
+						"th",
+						{ scope: "row" },
+						"Product"
+					),
+					_iaf.React.createElement(
+						"td",
+						null,
+						quote.product.text
+					)
+				),
+				_iaf.React.createElement(
+					"tr",
+					null,
+					_iaf.React.createElement(
+						"th",
+						{ scope: "row" },
+						"Term"
+					),
+					_iaf.React.createElement(
+						"td",
+						null,
+						quote.term.text
+					)
+				),
+				_iaf.React.createElement(
+					"tr",
+					null,
+					_iaf.React.createElement(
+						"th",
+						{ scope: "row" },
+						"Rate (p/a)"
+					),
+					_iaf.React.createElement(
+						"td",
+						null,
+						quote.price
+					)
+				),
+				_iaf.React.createElement(
+					"tr",
+					null,
+					_iaf.React.createElement(
+						"th",
+						{ scope: "row" },
+						"Created"
+					),
+					_iaf.React.createElement(
+						"td",
+						null,
+						quote.when.toDateString()
+					)
+				)
+			)
+		);
+	};
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _iaf = __webpack_require__(2);
+
+	var _QuoteList = __webpack_require__(19);
+
+	var _QuoteList2 = _interopRequireDefault(_QuoteList);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ListQuotes = function (_React$Component) {
+		_inherits(ListQuotes, _React$Component);
+
+		function ListQuotes() {
+			_classCallCheck(this, ListQuotes);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ListQuotes).apply(this, arguments));
+		}
+
+		_createClass(ListQuotes, [{
+			key: "render",
+			value: function render() {
+				var quotes = this.props.quotes;
+
+				if (quotes && quotes.created && quotes.created.length) {
+
+					var created = quotes.created.map(function (q) {
+
+						return Object.assign({}, q, { href: "/quotes/retrieve/" + q.id });
+					});
+					return _iaf.React.createElement(_QuoteList2.default, { created: created });
+				} else {
+
+					return _iaf.React.createElement(
+						"p",
+						null,
+						"You don't have any quotes yet."
+					);
+				}
+			}
+		}]);
+
+		return ListQuotes;
+	}(_iaf.React.Component);
+
+	exports.default = ListQuotes;
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _iaf = __webpack_require__(2);
+
+	exports.default = function (_ref) {
+		var created = _ref.created;
+		return _iaf.React.createElement(
+			"ul",
+			{ className: "list-group" },
+			created.map(function (q) {
+				return _iaf.React.createElement(
+					"li",
+					{ className: "list-group-item", key: q.href },
+					_iaf.React.createElement(
+						"a",
+						{ href: q.href },
+						_iaf.React.createElement(
+							"div",
+							null,
+							q.when,
+							": ",
+							q.product.text,
+							" ",
+							q.term.text,
+							" (£",
+							q.price,
+							")"
+						)
+					)
+				);
+			})
+		);
+	};
 
 /***/ }
 /******/ ])

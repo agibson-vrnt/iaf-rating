@@ -9,15 +9,25 @@ export default class TermSelector extends React.Component {
 
 	}
 
+	handleChange() {
+
+		this.props.selectTerm( this.refs.term.value );
+
+	}
+
+	renderTermOption( term ) {
+
+		return <option key={term.value} value={term.value}>{term.text}</option>;
+
+	}
+
 	render() {
 
-		return <select name="term" className="form-control" defaultValue="">
+		var selected = this.props.selected ? this.props.selected.value : "";
+		return <select ref="term" name="term" className="form-control" value={selected} onChange={e => this.handleChange( e )}>
+
 			<option value="" disabled>-- select a term --</option>
-			<option value="12">1 year</option>
-			<option value="24">2 years</option>
-			<option value="36">3 years</option>
-			<option value="60">5 years</option>
-			<option value="120">Lifetime</option>
+			{this.props.available.map( term => this.renderTermOption( term ) )}
 
 		</select>;
 

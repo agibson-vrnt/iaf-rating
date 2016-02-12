@@ -13,6 +13,7 @@ module.exports = {
             defaultLayout: "main",
             extname: ".hbs",
             views: __dirname + "/views",
+            partialsDir: __dirname + "/views",
             helpers: {
 
                 placeholder: function(name){

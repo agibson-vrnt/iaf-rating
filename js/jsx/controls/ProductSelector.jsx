@@ -1,6 +1,6 @@
 import { React } from "../../iaf";
 
-export default class HelloWorld extends React.Component {
+export default class ProductSelector extends React.Component {
 
 	constructor( props ) {
 
@@ -16,13 +16,18 @@ export default class HelloWorld extends React.Component {
 
 	}
 
+	renderProduct( product ) {
+
+		return <option key={product.value} value={product.value}>{product.text}</option>;
+
+	}
+
 	render() {
 
-console.log( this.props.selected );
-		return <select ref="product" name="product" className="form-control" defaultValue={this.props.selected || ""} onChange={e => this.handleChange( e )}>
+		var selected = this.props.selected ? this.props.selected.value : "";
+		return <select ref="product" name="product" className="form-control" value={selected} onChange={e => this.handleChange( e )}>
 			<option value="" disabled>-- select a product --</option>
-			<option value="standard">Standard</option>
-			<option value="premium">Premium</option>
+			{this.props.available.map( p => this.renderProduct( p ))}
 		</select>;
 
 	}

@@ -1,11 +1,11 @@
 // a mapper for converting the state tree to just the part our widget requires
-const mapStateToProps = state => state.terms || {};
+const mapStateToProps = state => state.quotes || {};
 
 // a mapper taking the dispatch method and building methods for our view compoments to call
-import * as actionCreators from "../action-creators/quote-action-creators";
+//import * as actionCreators from "../action-creators";
 const mapDispatchToProps = dispatch => ( {
 
-	selectTerm: ( id ) => dispatch( actionCreators.selectTerm( id ) )
+//	doIt: () => dispatch( actionCreators.asyncAction() )
 
 } );
 
@@ -13,10 +13,10 @@ const mapDispatchToProps = dispatch => ( {
 import { ReactRedux } from "../../iaf";
 
 // importing the widget which this container handles
-import TermSelector from "./TermSelector.jsx";
+import QuoteList from "./QuoteList.jsx";
 
 // build the container for our widget
-const TermSelectorContainer = ReactRedux.connect( mapStateToProps, mapDispatchToProps )( TermSelector );
+const QuoteListContainer = ReactRedux.connect( mapStateToProps, mapDispatchToProps )( QuoteList );
 
 // export the container
-export default TermSelectorContainer;
+export default QuoteListContainer;
