@@ -4,6 +4,7 @@ var bodyParser = require( "body-parser" );
 
 const APP_JSON = "application/json";
 const TEXT_HTML = "text/html";
+const APP_PARTIAL = "application/partial+json";
 
 function renderAddQuote( req, res ) {
 
@@ -43,7 +44,20 @@ module.exports = {
                     { view: "quotes", "model": { title: "Your quotes" } }
 
                 ) ],
-                [ APP_JSON, () => res.send( store.quotes.list() ) ]
+                [ APP_JSON, () => res.send( store.quotes.list() ) ],
+                [ APP_PARTIAL, () => {
+
+                    var digest = res.buildPartial(
+
+                        "ListQuotes",
+                        { quotes: { created: store.quotes.list( x => hydrateQuote( x, true ) ) } },
+                        "list-quotes"
+
+                    );
+                    console.log( "Sending", digest );
+                    res.send( digest );
+
+                } ]
 
             );
 
