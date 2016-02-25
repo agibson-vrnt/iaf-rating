@@ -1,8 +1,10 @@
+/*eslint-env es6*/
+
 import { React } from "../../iaf";
 import ProductSelectorContainer from "./ProductSelectorContainer.jsx";
 import TermSelectorContainer from "./TermSelectorContainer.jsx";
 
-export default class AddQuote extends React.Component {
+class AddQuote extends React.Component {
 
 	constructor( props ) {
 
@@ -22,6 +24,10 @@ export default class AddQuote extends React.Component {
 				<TermSelectorContainer />
 
 			</div>;
+
+		} else {
+
+			return undefined;
 
 		}
 
@@ -61,7 +67,8 @@ export default class AddQuote extends React.Component {
 
 		if( typeof window !== "undefined" ) {
 
-			this.setState( { isClient: true } );
+			// isomorphism control
+			this.setState( { isClient: true } ); //eslint-disable-line react/no-did-mount-set-state
 			this.forceUpdate();
 
 		}
@@ -86,3 +93,9 @@ export default class AddQuote extends React.Component {
 	}
 
 }
+AddQuote.propTypes = {
+	available: React.PropTypes.boolean,
+	selected: React.PropTypes.object
+};
+
+export default AddQuote;

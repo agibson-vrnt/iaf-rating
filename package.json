@@ -23,6 +23,7 @@
     "babel": "^6.3.26",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.1",
+    "babel-eslint": "^5.0.0",
     "babel-loader": "^6.2.2",
     "babel-plugin-syntax-object-rest-spread": "^6.5.0",
     "babel-plugin-transform-object-rest-spread": "^6.5.0",

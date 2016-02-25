@@ -68,15 +68,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _AddAQuote2 = _interopRequireDefault(_AddAQuote);
 
-	var _RetrieveQuote = __webpack_require__(14);
+	var _RetrieveQuote = __webpack_require__(13);
 
 	var _RetrieveQuote2 = _interopRequireDefault(_RetrieveQuote);
 
-	var _DeleteQuote = __webpack_require__(16);
+	var _DeleteQuote = __webpack_require__(15);
 
 	var _DeleteQuote2 = _interopRequireDefault(_DeleteQuote);
 
-	var _ListQuotes = __webpack_require__(18);
+	var _ListQuotes = __webpack_require__(16);
 
 	var _ListQuotes2 = _interopRequireDefault(_ListQuotes);
 
@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _iaf = __webpack_require__(2);
 
-	var _AddQuoteContainer = __webpack_require__(12);
+	var _AddQuoteContainer = __webpack_require__(4);
 
 	var _AddQuoteContainer2 = _interopRequireDefault(_AddQuoteContainer);
 
@@ -189,7 +189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
-	var _quoteReducers = __webpack_require__(13);
+	var _quoteReducers = __webpack_require__(12);
 
 	var _quoteReducers2 = _interopRequireDefault(_quoteReducers);
 
@@ -221,14 +221,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			value: function componentWillMount() {
 
 				var initialState = { products: { available: this.props.catalogue.slice() } };
-				this.partialStore = _iaf.Redux.createStore(_quoteReducers2.default, initialState, applyMiddleware(thunkMiddleware));
+				this.store = _iaf.Redux.createStore(_quoteReducers2.default, initialState, applyMiddleware(thunkMiddleware));
 				if (this.props.product) {
 
-					this.partialStore.dispatch(actionCreators.selectProduct(this.props.product));
+					this.store.dispatch(actionCreators.selectProduct(this.props.product));
 				}
 				if (this.props.term) {
 
-					this.partialStore.dispatch(actionCreators.selectTerm(this.props.term));
+					this.store.dispatch(actionCreators.selectTerm(this.props.term));
 				}
 			}
 		}, {
@@ -237,7 +237,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				return _iaf.React.createElement(
 					Provider,
-					{ store: this.partialStore },
+					{ store: this.store },
 					_iaf.React.createElement(_AddQuoteContainer2.default, null)
 				);
 			}
@@ -249,7 +249,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = AddAQuote;
 
 /***/ },
-/* 4 */,
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _addQuoteMappers = __webpack_require__(18);
+
+	var _reactRedux = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-redux\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _AddQuote = __webpack_require__(6);
+
+	var _AddQuote2 = _interopRequireDefault(_AddQuote);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// build the container for our widget
+
+
+	// importing the connect utility from react-redux - this creates the container for us
+	var AddQuoteContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_AddQuote2.default);
+
+	// export the container
+
+
+	// importing the widget which this container handles
+	exports.default = AddQuoteContainer;
+
+/***/ },
 /* 5 */,
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
@@ -403,7 +434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _quoteActionCreators = __webpack_require__(11);
+	var _quoteActionCreators = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../action-creators/quote-action-creators\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
@@ -534,7 +565,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _quoteActionCreators = __webpack_require__(11);
+	var _quoteActionCreators = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../action-creators/quote-action-creators\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
@@ -676,51 +707,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _iaf = __webpack_require__(2);
-
-	var _AddQuote = __webpack_require__(6);
-
-	var _AddQuote2 = _interopRequireDefault(_AddQuote);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// a mapper for converting the state tree to just the part our widget requires
-	var mapStateToProps = function mapStateToProps(state) {
-	  return state.terms || {};
-	};
-
-	// a mapper taking the dispatch method and building methods for our view compoments to call
-	//import * as actionCreators from "../action-creators";
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-
-	    //	doIt: () => dispatch( actionCreators.asyncAction() )
-
-	  };
-	};
-
-	// importing the connect utility from react-redux - this creates the container for us
-
-
-	// importing the widget which this container handles
-
-
-	// build the container for our widget
-	var AddQuoteContainer = _iaf.ReactRedux.connect(mapStateToProps, mapDispatchToProps)(_AddQuote2.default);
-
-	// export the container
-	exports.default = AddQuoteContainer;
-
-/***/ },
-/* 13 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -772,7 +758,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -785,7 +771,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _iaf = __webpack_require__(2);
 
-	var _ShowQuote = __webpack_require__(17);
+	var _ShowQuote = __webpack_require__(14);
 
 	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
 
@@ -849,96 +835,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = AddAQuote;
 
 /***/ },
-/* 15 */,
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _iaf = __webpack_require__(2);
-
-	var _ShowQuote = __webpack_require__(17);
-
-	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var DeleteQuote = function (_React$Component) {
-		_inherits(DeleteQuote, _React$Component);
-
-		function DeleteQuote() {
-			_classCallCheck(this, DeleteQuote);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(DeleteQuote).apply(this, arguments));
-		}
-
-		_createClass(DeleteQuote, [{
-			key: "render",
-			value: function render() {
-
-				var quote = this.props.quote;
-				if (quote) {
-
-					quote.when = new Date(quote.when);
-					return _iaf.React.createElement(
-						"div",
-						null,
-						_iaf.React.createElement(_ShowQuote2.default, { quote: this.props.quote }),
-						_iaf.React.createElement(
-							"form",
-							{ className: "well", method: "POST" },
-							_iaf.React.createElement(
-								"h4",
-								null,
-								"You are about to delete this quote. Please click to confirm."
-							),
-							_iaf.React.createElement("input", { type: "submit", className: "btn btn-danger", value: "CONFIRM" })
-						),
-						_iaf.React.createElement(
-							"a",
-							{ href: "/quotes" },
-							"Your quotes"
-						)
-					);
-				} else {
-
-					return _iaf.React.createElement(
-						"div",
-						null,
-						_iaf.React.createElement(
-							"p",
-							null,
-							"Your quote has been deleted."
-						),
-						_iaf.React.createElement(
-							"a",
-							{ href: "/quotes" },
-							"Your quotes"
-						)
-					);
-				}
-			}
-		}]);
-
-		return DeleteQuote;
-	}(_iaf.React.Component);
-
-	exports.default = DeleteQuote;
-
-/***/ },
-/* 17 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1018,7 +915,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 18 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1031,7 +928,95 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _iaf = __webpack_require__(2);
 
-	var _QuoteList = __webpack_require__(19);
+	var _ShowQuote = __webpack_require__(14);
+
+	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var DeleteQuote = function (_React$Component) {
+		_inherits(DeleteQuote, _React$Component);
+
+		function DeleteQuote() {
+			_classCallCheck(this, DeleteQuote);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(DeleteQuote).apply(this, arguments));
+		}
+
+		_createClass(DeleteQuote, [{
+			key: "render",
+			value: function render() {
+
+				var quote = this.props.quote;
+				if (quote) {
+
+					quote.when = new Date(quote.when);
+					return _iaf.React.createElement(
+						"div",
+						null,
+						_iaf.React.createElement(_ShowQuote2.default, { quote: this.props.quote }),
+						_iaf.React.createElement(
+							"form",
+							{ className: "well", method: "POST" },
+							_iaf.React.createElement(
+								"h4",
+								null,
+								"You are about to delete this quote. Please click to confirm."
+							),
+							_iaf.React.createElement("input", { type: "submit", className: "btn btn-danger", value: "CONFIRM" })
+						),
+						_iaf.React.createElement(
+							"a",
+							{ href: "/quotes" },
+							"Your quotes"
+						)
+					);
+				} else {
+
+					return _iaf.React.createElement(
+						"div",
+						null,
+						_iaf.React.createElement(
+							"p",
+							null,
+							"Your quote has been deleted."
+						),
+						_iaf.React.createElement(
+							"a",
+							{ href: "/quotes" },
+							"Your quotes"
+						)
+					);
+				}
+			}
+		}]);
+
+		return DeleteQuote;
+	}(_iaf.React.Component);
+
+	exports.default = DeleteQuote;
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _iaf = __webpack_require__(2);
+
+	var _QuoteList = __webpack_require__(17);
 
 	var _QuoteList2 = _interopRequireDefault(_QuoteList);
 
@@ -1081,7 +1066,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ListQuotes;
 
 /***/ },
-/* 19 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1121,6 +1106,30 @@ return /******/ (function(modules) { // webpackBootstrap
 			})
 		);
 	};
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/*eslint-env es6*/
+
+	// a mapper for converting the state tree to just the part our widget requires
+	var mapState = function mapState(state) {
+	  return state.terms || {};
+	};
+
+	// a mapper taking the dispatch method and building methods for our view compoments to call
+	var mapDispatch = function mapDispatch() {
+	  return {};
+	};
+
+	exports.mapState = mapState;
+	exports.mapDispatch = mapDispatch;
 
 /***/ }
 /******/ ])

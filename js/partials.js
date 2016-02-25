@@ -15,3 +15,6 @@ if( typeof window !== "undefined" && window.iaf && window.iaf.rating ) {
 }
 // export as module
 export default partials;
+
+
+
