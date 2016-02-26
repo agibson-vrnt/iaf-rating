@@ -1,10 +1,9 @@
-/*eslint-env es6*/
-
-import { React } from "../../iaf";
+import React from "react";
+var { Component, PropTypes } = React;
 import ProductSelectorContainer from "./ProductSelectorContainer.jsx";
 import TermSelectorContainer from "./TermSelectorContainer.jsx";
 
-class AddQuote extends React.Component {
+class AddQuote extends Component {
 
 	constructor( props ) {
 
@@ -94,7 +93,7 @@ class AddQuote extends React.Component {
 
 }
 AddQuote.propTypes = {
-	available: React.PropTypes.boolean,
+	available: React.PropTypes.array,
 	selected: React.PropTypes.object
 };
 

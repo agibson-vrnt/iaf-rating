@@ -1,6 +1,7 @@
-import { React } from "../../iaf";
+import React from "react";
+var { Component, PropTypes } = React;
 
-export default class TermSelector extends React.Component {
+class TermSelector extends Component {
 
 	constructor( props ) {
 
@@ -34,3 +35,11 @@ export default class TermSelector extends React.Component {
 	}
 
 }
+TermSelector.propTypes = {
+
+	selectTerm: PropTypes.func.isRequired,
+	selected: PropTypes.object,
+	available: PropTypes.array
+
+};
+export default TermSelector;

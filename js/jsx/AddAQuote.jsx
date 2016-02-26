@@ -1,20 +1,19 @@
+import React, { Component, PropTypes } from "react";
+import { Provider } from "react-redux";
+import { thunkMiddleware } from "redux-thunk";
+import { applyMiddleware, createStore } from "redux";
 
-import { React, ReactRedux, Redux, ReduxThunk } from "../iaf";
 import AddQuoteContainer from "./controls/AddQuoteContainer.jsx";
 import * as actionCreators from "../logic/action-creators/quote-action-creators";
 
-var Provider = ReactRedux.Provider;
-var applyMiddleware = Redux.applyMiddleware;
-var thunkMiddleware = ReduxThunk.thunkMiddleware;
-
 import quoteReducers from "../logic/reducers/quote-reducers";
 
-export default class AddAQuote extends React.Component {
+class AddAQuote extends Component {
 
 	componentWillMount() {
 
 		var initialState = { products: { available: this.props.catalogue.slice() } };
-		this.store = Redux.createStore(
+		this.store = createStore(
 
 			quoteReducers,
 			initialState,
@@ -41,3 +40,5 @@ export default class AddAQuote extends React.Component {
 	}
 
 }
+AddAQuote.propTypes = { catalogue: PropTypes.array, product: PropTypes.object, term: PropTypes.object };
+export default AddAQuote;

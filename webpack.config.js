@@ -17,6 +17,18 @@ module.exports = {
         libraryTarget: "umd"
 
     },
+    "resolve": {
+
+        "alias": {
+
+            "react-redux": path.resolve( __dirname, "js/proxies/react-redux" ),
+            "react": path.resolve( __dirname, "js/proxies/react" ),
+            "redux": path.resolve( __dirname, "js/proxies/redux" ),
+            "redux-thunk": path.resolve( __dirname, "js/proxies/redux-thunk" )
+
+        }
+
+    },
     module: {
 
         "loaders": [

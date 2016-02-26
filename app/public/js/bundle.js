@@ -68,15 +68,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _AddAQuote2 = _interopRequireDefault(_AddAQuote);
 
-	var _RetrieveQuote = __webpack_require__(13);
+	var _RetrieveQuote = __webpack_require__(18);
 
 	var _RetrieveQuote2 = _interopRequireDefault(_RetrieveQuote);
 
-	var _DeleteQuote = __webpack_require__(15);
+	var _DeleteQuote = __webpack_require__(20);
 
 	var _DeleteQuote2 = _interopRequireDefault(_DeleteQuote);
 
-	var _ListQuotes = __webpack_require__(16);
+	var _ListQuotes = __webpack_require__(21);
 
 	var _ListQuotes2 = _interopRequireDefault(_ListQuotes);
 
@@ -105,7 +105,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -113,8 +117,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var HelloWorld = function (_React$Component) {
-		_inherits(HelloWorld, _React$Component);
+	var HelloWorld = function (_Component) {
+		_inherits(HelloWorld, _Component);
 
 		function HelloWorld(props) {
 			_classCallCheck(this, HelloWorld);
@@ -137,13 +141,13 @@ return /******/ (function(modules) { // webpackBootstrap
 			value: function render() {
 				var _this2 = this;
 
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"div",
 					{ onClick: function onClick(e) {
 							return _this2.handleClick(e);
 						} },
 					"Hello world",
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"div",
 						null,
 						this.state.hit && "OUCH!"
@@ -153,19 +157,28 @@ return /******/ (function(modules) { // webpackBootstrap
 		}]);
 
 		return HelloWorld;
-	}(_iaf.React.Component);
+	}(_react.Component);
 
 	exports.default = HelloWorld;
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
+	"use strict";
 
-	/*eslint-env node, browser*/
-	module.exports = (typeof window === "undefined" ? global : window).iaf.rating.iaf;
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.PropTypes = exports.Component = undefined;
+
+	var _iaf = __webpack_require__(23);
+
+	exports.default = _iaf.React;
+	var Component = _iaf.React.Component;
+	var PropTypes = _iaf.React.PropTypes;
+	exports.Component = Component;
+	exports.PropTypes = PropTypes;
 
 /***/ },
 /* 3 */
@@ -179,17 +192,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
 
-	var _AddQuoteContainer = __webpack_require__(4);
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(4);
+
+	var _reduxThunk = __webpack_require__(5);
+
+	var _redux = __webpack_require__(6);
+
+	var _AddQuoteContainer = __webpack_require__(7);
 
 	var _AddQuoteContainer2 = _interopRequireDefault(_AddQuoteContainer);
 
-	var _quoteActionCreators = __webpack_require__(11);
+	var _quoteActionCreators = __webpack_require__(12);
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
-	var _quoteReducers = __webpack_require__(12);
+	var _quoteReducers = __webpack_require__(17);
 
 	var _quoteReducers2 = _interopRequireDefault(_quoteReducers);
 
@@ -203,12 +224,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Provider = _iaf.ReactRedux.Provider;
-	var applyMiddleware = _iaf.Redux.applyMiddleware;
-	var thunkMiddleware = _iaf.ReduxThunk.thunkMiddleware;
-
-	var AddAQuote = function (_React$Component) {
-		_inherits(AddAQuote, _React$Component);
+	var AddAQuote = function (_Component) {
+		_inherits(AddAQuote, _Component);
 
 		function AddAQuote() {
 			_classCallCheck(this, AddAQuote);
@@ -221,7 +238,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			value: function componentWillMount() {
 
 				var initialState = { products: { available: this.props.catalogue.slice() } };
-				this.store = _iaf.Redux.createStore(_quoteReducers2.default, initialState, applyMiddleware(thunkMiddleware));
+				this.store = (0, _redux.createStore)(_quoteReducers2.default, initialState, (0, _redux.applyMiddleware)(_reduxThunk.thunkMiddleware));
 				if (this.props.product) {
 
 					this.store.dispatch(actionCreators.selectProduct(this.props.product));
@@ -235,17 +252,18 @@ return /******/ (function(modules) { // webpackBootstrap
 			key: "render",
 			value: function render() {
 
-				return _iaf.React.createElement(
-					Provider,
+				return _react2.default.createElement(
+					_reactRedux.Provider,
 					{ store: this.store },
-					_iaf.React.createElement(_AddQuoteContainer2.default, null)
+					_react2.default.createElement(_AddQuoteContainer2.default, null)
 				);
 			}
 		}]);
 
 		return AddAQuote;
-	}(_iaf.React.Component);
+	}(_react.Component);
 
+	AddAQuote.propTypes = { catalogue: _react.PropTypes.array, product: _react.PropTypes.object, term: _react.PropTypes.object };
 	exports.default = AddAQuote;
 
 /***/ },
@@ -257,32 +275,107 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.Provider = undefined;
 
-	var _addQuoteMappers = __webpack_require__(18);
+	var _iaf = __webpack_require__(23);
 
-	var _reactRedux = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-redux\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	exports.default = _iaf.ReactRedux;
+	var Provider = _iaf.ReactRedux.Provider;
+	exports.Provider = Provider;
 
-	var _AddQuote = __webpack_require__(6);
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.thunkMiddleware = undefined;
+
+	var _iaf = __webpack_require__(23);
+
+	exports.default = _iaf.ReduxThunk;
+	var thunkMiddleware = _iaf.ReduxThunk.thunkMiddleware;
+	exports.thunkMiddleware = thunkMiddleware;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.createStore = exports.applyMiddleware = undefined;
+
+	var _iaf = __webpack_require__(23);
+
+	exports.default = _iaf.Redux;
+	var applyMiddleware = _iaf.Redux.applyMiddleware;
+	var createStore = _iaf.Redux.createStore;
+	exports.applyMiddleware = applyMiddleware;
+	exports.createStore = createStore;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _addQuoteContainer = __webpack_require__(8);
+
+	var _addQuoteContainer2 = _interopRequireDefault(_addQuoteContainer);
+
+	var _AddQuote = __webpack_require__(9);
 
 	var _AddQuote2 = _interopRequireDefault(_AddQuote);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// build the container for our widget
-
-
-	// importing the connect utility from react-redux - this creates the container for us
-	var AddQuoteContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_AddQuote2.default);
+	var AddQuoteContainer = (0, _addQuoteContainer2.default)(_AddQuote2.default);
 
 	// export the container
-
-
-	// importing the widget which this container handles
 	exports.default = AddQuoteContainer;
 
 /***/ },
-/* 5 */,
-/* 6 */
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(4);
+
+	var _reactRedux2 = _interopRequireDefault(_reactRedux);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// a mapper for converting the state tree to just the part our widget requires
+	var mapState = function mapState(state) {
+	  return state.terms || {};
+	};
+
+	// a mapper taking the dispatch method and building methods for our view compoments to call
+	var mapDispatch = function mapDispatch() {
+	  return {};
+	};
+
+	exports.default = function (control) {
+	  return _reactRedux2.default.connect(mapState, mapDispatch)(control);
+	};
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -295,13 +388,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
 
-	var _ProductSelectorContainer = __webpack_require__(7);
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ProductSelectorContainer = __webpack_require__(10);
 
 	var _ProductSelectorContainer2 = _interopRequireDefault(_ProductSelectorContainer);
 
-	var _TermSelectorContainer = __webpack_require__(9);
+	var _TermSelectorContainer = __webpack_require__(14);
 
 	var _TermSelectorContainer2 = _interopRequireDefault(_TermSelectorContainer);
 
@@ -313,8 +408,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var AddQuote = function (_React$Component) {
-		_inherits(AddQuote, _React$Component);
+	var Component = _react2.default.Component;
+	var PropTypes = _react2.default.PropTypes;
+
+	var AddQuote = function (_Component) {
+		_inherits(AddQuote, _Component);
 
 		function AddQuote(props) {
 			_classCallCheck(this, AddQuote);
@@ -333,16 +431,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				if (available && available.length) {
 
-					return _iaf.React.createElement(
+					return _react2.default.createElement(
 						"div",
 						{ className: "form-group" },
-						_iaf.React.createElement(
+						_react2.default.createElement(
 							"label",
 							null,
 							"Select a term"
 						),
-						_iaf.React.createElement(_TermSelectorContainer2.default, null)
+						_react2.default.createElement(_TermSelectorContainer2.default, null)
 					);
+				} else {
+
+					return undefined;
 				}
 			}
 		}, {
@@ -353,10 +454,10 @@ return /******/ (function(modules) { // webpackBootstrap
 					return null;
 				}
 				var advice = this.props.available ? "term" : "product";
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"p",
 					{ className: "bg-info " },
-					_iaf.React.createElement("span", { className: "glyphicon glyphicon-info-sign", "aria-hidden": "true" }),
+					_react2.default.createElement("span", { className: "glyphicon glyphicon-info-sign", "aria-hidden": "true" }),
 					" Select a ",
 					advice,
 					" to complete your request"
@@ -370,7 +471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				if (isDisabled) {
 					attributes.disabled = "disabled";
 				}
-				return _iaf.React.createElement("input", _extends({ type: "submit", value: "Submit", className: "btn btn-" + (isReady ? "primary" : "default") }, attributes));
+				return _react2.default.createElement("input", _extends({ type: "submit", value: "Submit", className: "btn btn-" + (isReady ? "primary" : "default") }, attributes));
 			}
 		}, {
 			key: "renderSubmit",
@@ -379,7 +480,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				var isReady = !!selected;
 				var isDisabled = this.state.isClient && !isReady;
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"div",
 					null,
 					this.renderAdvice(isReady),
@@ -392,7 +493,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				if (typeof window !== "undefined") {
 
-					this.setState({ isClient: true });
+					// isomorphism control
+					this.setState({ isClient: true }); //eslint-disable-line react/no-did-mount-set-state
 					this.forceUpdate();
 				}
 			}
@@ -400,18 +502,18 @@ return /******/ (function(modules) { // webpackBootstrap
 			key: "render",
 			value: function render() {
 
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"form",
 					{ method: "POST" },
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"div",
 						{ className: "form-group" },
-						_iaf.React.createElement(
+						_react2.default.createElement(
 							"label",
 							null,
 							"Select a product"
 						),
-						_iaf.React.createElement(_ProductSelectorContainer2.default, null)
+						_react2.default.createElement(_ProductSelectorContainer2.default, null)
 					),
 					this.renderTermSelector(),
 					this.renderSubmit()
@@ -420,12 +522,45 @@ return /******/ (function(modules) { // webpackBootstrap
 		}]);
 
 		return AddQuote;
-	}(_iaf.React.Component);
+	}(Component);
+
+	AddQuote.propTypes = {
+		available: _react2.default.PropTypes.array,
+		selected: _react2.default.PropTypes.object
+	};
 
 	exports.default = AddQuote;
 
 /***/ },
-/* 7 */
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _productSelectorContainer = __webpack_require__(11);
+
+	var _productSelectorContainer2 = _interopRequireDefault(_productSelectorContainer);
+
+	var _ProductSelector = __webpack_require__(13);
+
+	var _ProductSelector2 = _interopRequireDefault(_ProductSelector);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// build the container for our widget
+	var ProductSelectorContainer = (0, _productSelectorContainer2.default)(_ProductSelector2.default);
+
+	// export the container
+
+	// importing the widget which this container handles
+	exports.default = ProductSelectorContainer;
+
+/***/ },
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -434,19 +569,17 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _quoteActionCreators = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../action-creators/quote-action-creators\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRedux = __webpack_require__(4);
+
+	var _reactRedux2 = _interopRequireDefault(_reactRedux);
+
+	var _quoteActionCreators = __webpack_require__(12);
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
-	var _iaf = __webpack_require__(2);
-
-	var _ProductSelector = __webpack_require__(8);
-
-	var _ProductSelector2 = _interopRequireDefault(_ProductSelector);
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	// a mapper for converting the state tree to just the part our widget requires
 	var mapStateToProps = function mapStateToProps(state) {
@@ -465,20 +598,34 @@ return /******/ (function(modules) { // webpackBootstrap
 		};
 	};
 
-	// importing the connect utility from react-redux - this creates the container for us
-
-
-	// importing the widget which this container handles
-
-
-	// build the container for our widget
-	var ProductSelectorContainer = _iaf.ReactRedux.connect(mapStateToProps, mapDispatchToProps)(_ProductSelector2.default);
-
 	// export the container
-	exports.default = ProductSelectorContainer;
+
+	exports.default = function (control) {
+		return _reactRedux2.default.connect(mapStateToProps, mapDispatchToProps)(control);
+	};
 
 /***/ },
-/* 8 */
+/* 12 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.selectProduct = selectProduct;
+	exports.selectTerm = selectTerm;
+	function selectProduct(productId) {
+
+		return { "type": "select-product", "id": productId };
+	}
+	function selectTerm(termId) {
+
+		return { "type": "select-term", "id": termId };
+	}
+
+/***/ },
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -489,7 +636,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -497,8 +648,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var ProductSelector = function (_React$Component) {
-		_inherits(ProductSelector, _React$Component);
+	var Component = _react2.default.Component;
+	var PropTypes = _react2.default.PropTypes;
+
+	var ProductSelector = function (_Component) {
+		_inherits(ProductSelector, _Component);
 
 		function ProductSelector(props) {
 			_classCallCheck(this, ProductSelector);
@@ -521,7 +675,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			key: "renderProduct",
 			value: function renderProduct(product) {
 
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"option",
 					{ key: product.value, value: product.value },
 					product.text
@@ -533,12 +687,12 @@ return /******/ (function(modules) { // webpackBootstrap
 				var _this2 = this;
 
 				var selected = this.props.selected ? this.props.selected.value : "";
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"select",
 					{ ref: "product", name: "product", className: "form-control", value: selected, onChange: function onChange(e) {
 							return _this2.handleChange(e);
 						} },
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"option",
 						{ value: "", disabled: true },
 						"-- select a product --"
@@ -551,12 +705,48 @@ return /******/ (function(modules) { // webpackBootstrap
 		}]);
 
 		return ProductSelector;
-	}(_iaf.React.Component);
+	}(Component);
 
+	ProductSelector.propTypes = {
+
+		selectProduct: PropTypes.func.isRequired,
+		selected: PropTypes.object,
+		available: PropTypes.array
+
+	};
 	exports.default = ProductSelector;
 
 /***/ },
-/* 9 */
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _termSelectorContainer = __webpack_require__(15);
+
+	var _termSelectorContainer2 = _interopRequireDefault(_termSelectorContainer);
+
+	var _TermSelector = __webpack_require__(16);
+
+	var _TermSelector2 = _interopRequireDefault(_TermSelector);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// build the container for our widget
+	var TermSelectorContainer = (0, _termSelectorContainer2.default)(_TermSelector2.default);
+
+	// export the container
+
+
+	// importing the widget which this container handles
+	exports.default = TermSelectorContainer;
+
+/***/ },
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -565,28 +755,26 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _quoteActionCreators = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../action-creators/quote-action-creators\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRedux = __webpack_require__(4);
+
+	var _reactRedux2 = _interopRequireDefault(_reactRedux);
+
+	var _quoteActionCreators = __webpack_require__(12);
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
-	var _iaf = __webpack_require__(2);
-
-	var _TermSelector = __webpack_require__(10);
-
-	var _TermSelector2 = _interopRequireDefault(_TermSelector);
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 	// a mapper for converting the state tree to just the part our widget requires
-	var mapStateToProps = function mapStateToProps(state) {
+	var mapState = function mapState(state) {
 		return state.terms || {};
 	};
 
 	// a mapper taking the dispatch method and building methods for our view compoments to call
 
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	var mapDispatch = function mapDispatch(dispatch) {
 		return {
 
 			selectTerm: function selectTerm(id) {
@@ -596,20 +784,14 @@ return /******/ (function(modules) { // webpackBootstrap
 		};
 	};
 
-	// importing the connect utility from react-redux - this creates the container for us
+	// export the container factory
 
-
-	// importing the widget which this container handles
-
-
-	// build the container for our widget
-	var TermSelectorContainer = _iaf.ReactRedux.connect(mapStateToProps, mapDispatchToProps)(_TermSelector2.default);
-
-	// export the container
-	exports.default = TermSelectorContainer;
+	exports.default = function (control) {
+		return _reactRedux2.default.connect(mapState, mapDispatch)(control);
+	};
 
 /***/ },
-/* 10 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -620,7 +802,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -628,8 +814,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var TermSelector = function (_React$Component) {
-		_inherits(TermSelector, _React$Component);
+	var Component = _react2.default.Component;
+	var PropTypes = _react2.default.PropTypes;
+
+	var TermSelector = function (_Component) {
+		_inherits(TermSelector, _Component);
 
 		function TermSelector(props) {
 			_classCallCheck(this, TermSelector);
@@ -651,7 +840,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			key: "renderTermOption",
 			value: function renderTermOption(term) {
 
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"option",
 					{ key: term.value, value: term.value },
 					term.text
@@ -663,12 +852,12 @@ return /******/ (function(modules) { // webpackBootstrap
 				var _this2 = this;
 
 				var selected = this.props.selected ? this.props.selected.value : "";
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"select",
 					{ ref: "term", name: "term", className: "form-control", value: selected, onChange: function onChange(e) {
 							return _this2.handleChange(e);
 						} },
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"option",
 						{ value: "", disabled: true },
 						"-- select a term --"
@@ -681,32 +870,19 @@ return /******/ (function(modules) { // webpackBootstrap
 		}]);
 
 		return TermSelector;
-	}(_iaf.React.Component);
+	}(Component);
 
+	TermSelector.propTypes = {
+
+		selectTerm: PropTypes.func.isRequired,
+		selected: PropTypes.object,
+		available: PropTypes.array
+
+	};
 	exports.default = TermSelector;
 
 /***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.selectProduct = selectProduct;
-	exports.selectTerm = selectTerm;
-	function selectProduct(productId) {
-
-		return { "type": "select-product", "id": productId };
-	}
-	function selectTerm(termId) {
-
-		return { "type": "select-term", "id": termId };
-	}
-
-/***/ },
-/* 12 */
+/* 17 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -758,7 +934,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 13 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -769,9 +945,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
 
-	var _ShowQuote = __webpack_require__(14);
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ShowQuote = __webpack_require__(19);
 
 	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
 
@@ -783,8 +961,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var AddAQuote = function (_React$Component) {
-		_inherits(AddAQuote, _React$Component);
+	var AddAQuote = function (_Component) {
+		_inherits(AddAQuote, _Component);
 
 		function AddAQuote() {
 			_classCallCheck(this, AddAQuote);
@@ -800,14 +978,14 @@ return /******/ (function(modules) { // webpackBootstrap
 				if (quote) {
 
 					quote.when = new Date(quote.when);
-					return _iaf.React.createElement(
+					return _react2.default.createElement(
 						"div",
 						null,
-						_iaf.React.createElement(_ShowQuote2.default, { quote: quote }),
-						_iaf.React.createElement(
+						_react2.default.createElement(_ShowQuote2.default, { quote: quote }),
+						_react2.default.createElement(
 							"div",
 							{ className: "well" },
-							_iaf.React.createElement(
+							_react2.default.createElement(
 								"a",
 								{ href: "./" + quote.id + "/delete", className: "btn btn-danger" },
 								"Delete"
@@ -816,10 +994,10 @@ return /******/ (function(modules) { // webpackBootstrap
 					);
 				} else {
 
-					return _iaf.React.createElement(
+					return _react2.default.createElement(
 						"div",
 						null,
-						_iaf.React.createElement(
+						_react2.default.createElement(
 							"p",
 							null,
 							"Your quote could not be retrieved. Perhaps it was too good to be true?"
@@ -830,12 +1008,13 @@ return /******/ (function(modules) { // webpackBootstrap
 		}]);
 
 		return AddAQuote;
-	}(_iaf.React.Component);
+	}(_react.Component);
 
+	AddAQuote.propTypes = { quote: _react.PropTypes.object };
 	exports.default = AddAQuote;
 
 /***/ },
-/* 14 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -844,67 +1023,71 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function (_ref) {
 		var quote = _ref.quote;
-		return _iaf.React.createElement(
+		return _react2.default.createElement(
 			"table",
 			{ className: "table" },
-			_iaf.React.createElement(
+			_react2.default.createElement(
 				"tbody",
 				null,
-				_iaf.React.createElement(
+				_react2.default.createElement(
 					"tr",
 					null,
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"th",
 						{ scope: "row" },
 						"Product"
 					),
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"td",
 						null,
 						quote.product.text
 					)
 				),
-				_iaf.React.createElement(
+				_react2.default.createElement(
 					"tr",
 					null,
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"th",
 						{ scope: "row" },
 						"Term"
 					),
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"td",
 						null,
 						quote.term.text
 					)
 				),
-				_iaf.React.createElement(
+				_react2.default.createElement(
 					"tr",
 					null,
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"th",
 						{ scope: "row" },
 						"Rate (p/a)"
 					),
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"td",
 						null,
 						quote.price
 					)
 				),
-				_iaf.React.createElement(
+				_react2.default.createElement(
 					"tr",
 					null,
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"th",
 						{ scope: "row" },
 						"Created"
 					),
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"td",
 						null,
 						quote.when.toDateString()
@@ -915,7 +1098,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 15 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -926,9 +1109,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
 
-	var _ShowQuote = __webpack_require__(14);
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ShowQuote = __webpack_require__(19);
 
 	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
 
@@ -940,8 +1125,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var DeleteQuote = function (_React$Component) {
-		_inherits(DeleteQuote, _React$Component);
+	var DeleteQuote = function (_Component) {
+		_inherits(DeleteQuote, _Component);
 
 		function DeleteQuote() {
 			_classCallCheck(this, DeleteQuote);
@@ -957,21 +1142,21 @@ return /******/ (function(modules) { // webpackBootstrap
 				if (quote) {
 
 					quote.when = new Date(quote.when);
-					return _iaf.React.createElement(
+					return _react2.default.createElement(
 						"div",
 						null,
-						_iaf.React.createElement(_ShowQuote2.default, { quote: this.props.quote }),
-						_iaf.React.createElement(
+						_react2.default.createElement(_ShowQuote2.default, { quote: this.props.quote }),
+						_react2.default.createElement(
 							"form",
 							{ className: "well", method: "POST" },
-							_iaf.React.createElement(
+							_react2.default.createElement(
 								"h4",
 								null,
 								"You are about to delete this quote. Please click to confirm."
 							),
-							_iaf.React.createElement("input", { type: "submit", className: "btn btn-danger", value: "CONFIRM" })
+							_react2.default.createElement("input", { type: "submit", className: "btn btn-danger", value: "CONFIRM" })
 						),
-						_iaf.React.createElement(
+						_react2.default.createElement(
 							"a",
 							{ href: "/quotes" },
 							"Your quotes"
@@ -979,15 +1164,15 @@ return /******/ (function(modules) { // webpackBootstrap
 					);
 				} else {
 
-					return _iaf.React.createElement(
+					return _react2.default.createElement(
 						"div",
 						null,
-						_iaf.React.createElement(
+						_react2.default.createElement(
 							"p",
 							null,
 							"Your quote has been deleted."
 						),
-						_iaf.React.createElement(
+						_react2.default.createElement(
 							"a",
 							{ href: "/quotes" },
 							"Your quotes"
@@ -998,12 +1183,13 @@ return /******/ (function(modules) { // webpackBootstrap
 		}]);
 
 		return DeleteQuote;
-	}(_iaf.React.Component);
+	}(_react.Component);
 
+	DeleteQuote.propTypes = { quote: _react.PropTypes.object };
 	exports.default = DeleteQuote;
 
 /***/ },
-/* 16 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1014,9 +1200,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
 
-	var _QuoteList = __webpack_require__(17);
+	var _react2 = _interopRequireDefault(_react);
+
+	var _QuoteList = __webpack_require__(22);
 
 	var _QuoteList2 = _interopRequireDefault(_QuoteList);
 
@@ -1028,8 +1216,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var ListQuotes = function (_React$Component) {
-		_inherits(ListQuotes, _React$Component);
+	var ListQuotes = function (_Component) {
+		_inherits(ListQuotes, _Component);
 
 		function ListQuotes() {
 			_classCallCheck(this, ListQuotes);
@@ -1048,10 +1236,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						return Object.assign({}, q, { href: "/quotes/retrieve/" + q.id });
 					});
-					return _iaf.React.createElement(_QuoteList2.default, { created: created });
+					return _react2.default.createElement(_QuoteList2.default, { created: created });
 				} else {
 
-					return _iaf.React.createElement(
+					return _react2.default.createElement(
 						"p",
 						null,
 						"You don't have any quotes yet."
@@ -1061,12 +1249,13 @@ return /******/ (function(modules) { // webpackBootstrap
 		}]);
 
 		return ListQuotes;
-	}(_iaf.React.Component);
+	}(_react.Component);
 
+	ListQuotes.propTypes = { quotes: _react.PropTypes.object };
 	exports.default = ListQuotes;
 
 /***/ },
-/* 17 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1075,21 +1264,25 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _iaf = __webpack_require__(2);
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function (_ref) {
 		var created = _ref.created;
-		return _iaf.React.createElement(
+		return _react2.default.createElement(
 			"ul",
 			{ className: "list-group" },
 			created.map(function (q) {
-				return _iaf.React.createElement(
+				return _react2.default.createElement(
 					"li",
 					{ className: "list-group-item", key: q.href },
-					_iaf.React.createElement(
+					_react2.default.createElement(
 						"a",
 						{ href: q.href },
-						_iaf.React.createElement(
+						_react2.default.createElement(
 							"div",
 							null,
 							q.when,
@@ -1108,28 +1301,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 18 */
+/* 23 */
 /***/ function(module, exports) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/*eslint-env es6*/
-
-	// a mapper for converting the state tree to just the part our widget requires
-	var mapState = function mapState(state) {
-	  return state.terms || {};
-	};
-
-	// a mapper taking the dispatch method and building methods for our view compoments to call
-	var mapDispatch = function mapDispatch() {
-	  return {};
-	};
-
-	exports.mapState = mapState;
-	exports.mapDispatch = mapDispatch;
+	/*eslint-env node, browser*/
+	module.exports = (typeof window === "undefined" ? global : window).iaf.rating.iaf;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }
 /******/ ])

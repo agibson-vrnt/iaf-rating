@@ -1,4 +1,4 @@
-import { React } from "../../iaf";
+import React from "react";
 
 export default ( { quote } ) =>
 

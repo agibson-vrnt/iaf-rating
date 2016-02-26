@@ -1,6 +1,7 @@
-import { React } from "../../iaf";
+import React from "react";
+var { Component, PropTypes } = React;
 
-export default class ProductSelector extends React.Component {
+class ProductSelector extends Component {
 
 	constructor( props ) {
 
@@ -33,3 +34,11 @@ export default class ProductSelector extends React.Component {
 	}
 
 }
+ProductSelector.propTypes = {
+
+	selectProduct: PropTypes.func.isRequired,
+	selected: PropTypes.object,
+	available: PropTypes.array
+
+};
+export default ProductSelector;

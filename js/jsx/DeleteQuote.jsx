@@ -1,8 +1,7 @@
-
-import { React } from "../iaf";
+import React, { Component, PropTypes } from "react";
 import ShowQuote from "./controls/ShowQuote.jsx";
 
-export default class DeleteQuote extends React.Component {
+class DeleteQuote extends Component {
 
 	render() {
 
@@ -37,3 +36,5 @@ export default class DeleteQuote extends React.Component {
 	}
 
 }
+DeleteQuote.propTypes = { quote: PropTypes.object };
+export default DeleteQuote;

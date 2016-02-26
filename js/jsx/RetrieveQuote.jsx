@@ -1,8 +1,7 @@
-
-import { React } from "../iaf";
+import React, { Component, PropTypes } from "react";
 import ShowQuote from "./controls/ShowQuote.jsx";
 
-export default class AddAQuote extends React.Component {
+class AddAQuote extends Component {
 
 	render() {
 
@@ -34,3 +33,5 @@ export default class AddAQuote extends React.Component {
 	}
 
 }
+AddAQuote.propTypes = { quote: PropTypes.object };
+export default AddAQuote;

@@ -1,6 +1,6 @@
-import { React } from "../iaf";
+import React, { Component } from "react";
 
-export default class HelloWorld extends React.Component {
+class HelloWorld extends Component {
 
 	constructor( props ) {
 
@@ -25,3 +25,5 @@ export default class HelloWorld extends React.Component {
 	}
 
 }
+export default HelloWorld;
+

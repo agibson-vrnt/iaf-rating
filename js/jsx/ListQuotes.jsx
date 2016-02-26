@@ -1,8 +1,7 @@
-
-import { React } from "../iaf";
+import React, { Component, PropTypes } from "react";
 import QuoteList from "./controls/QuoteList.jsx";
 
-export default class ListQuotes extends React.Component {
+class ListQuotes extends Component {
 
 	render() {
 
@@ -25,3 +24,5 @@ export default class ListQuotes extends React.Component {
 	}
 
 }
+ListQuotes.propTypes = { quotes: PropTypes.object };
+export default ListQuotes;
