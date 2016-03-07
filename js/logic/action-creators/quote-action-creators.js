@@ -8,3 +8,4 @@ export function selectTerm( termId ) {
 	return { "type": "select-term", "id": termId };
 
 }
+console.log( 1 );

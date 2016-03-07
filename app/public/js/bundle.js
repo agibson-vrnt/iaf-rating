@@ -64,19 +64,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Main2 = _interopRequireDefault(_Main);
 
-	var _AddAQuote = __webpack_require__(3);
+	var _AddAQuote = __webpack_require__(4);
 
 	var _AddAQuote2 = _interopRequireDefault(_AddAQuote);
 
-	var _RetrieveQuote = __webpack_require__(18);
+	var _RetrieveQuote = __webpack_require__(19);
 
 	var _RetrieveQuote2 = _interopRequireDefault(_RetrieveQuote);
 
-	var _DeleteQuote = __webpack_require__(20);
+	var _DeleteQuote = __webpack_require__(21);
 
 	var _DeleteQuote2 = _interopRequireDefault(_DeleteQuote);
 
-	var _ListQuotes = __webpack_require__(21);
+	var _ListQuotes = __webpack_require__(22);
 
 	var _ListQuotes2 = _interopRequireDefault(_ListQuotes);
 
@@ -172,7 +172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.PropTypes = exports.Component = undefined;
 
-	var _iaf = __webpack_require__(23);
+	var _iaf = __webpack_require__(3);
 
 	exports.default = _iaf.React;
 	var Component = _iaf.React.Component;
@@ -182,6 +182,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 3 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
+
+	/*eslint-env node, browser*/
+	module.exports = (typeof window === "undefined" ? global : window).iaf.rating.iaf;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -196,21 +206,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(4);
+	var _reactRedux = __webpack_require__(5);
 
-	var _reduxThunk = __webpack_require__(5);
+	var _reduxThunk = __webpack_require__(6);
 
-	var _redux = __webpack_require__(6);
+	var _redux = __webpack_require__(7);
 
-	var _AddQuoteContainer = __webpack_require__(7);
+	var _AddQuoteContainer = __webpack_require__(8);
 
 	var _AddQuoteContainer2 = _interopRequireDefault(_AddQuoteContainer);
 
-	var _quoteActionCreators = __webpack_require__(12);
+	var _quoteActionCreators = __webpack_require__(13);
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
-	var _quoteReducers = __webpack_require__(17);
+	var _quoteReducers = __webpack_require__(18);
 
 	var _quoteReducers2 = _interopRequireDefault(_quoteReducers);
 
@@ -267,7 +277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = AddAQuote;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -277,28 +287,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.Provider = undefined;
 
-	var _iaf = __webpack_require__(23);
+	var _iaf = __webpack_require__(3);
 
 	exports.default = _iaf.ReactRedux;
 	var Provider = _iaf.ReactRedux.Provider;
 	exports.Provider = Provider;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.thunkMiddleware = undefined;
-
-	var _iaf = __webpack_require__(23);
-
-	exports.default = _iaf.ReduxThunk;
-	var thunkMiddleware = _iaf.ReduxThunk.thunkMiddleware;
-	exports.thunkMiddleware = thunkMiddleware;
 
 /***/ },
 /* 6 */
@@ -309,15 +302,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.createStore = exports.applyMiddleware = undefined;
+	exports.thunkMiddleware = undefined;
 
-	var _iaf = __webpack_require__(23);
+	var _iaf = __webpack_require__(3);
 
-	exports.default = _iaf.Redux;
-	var applyMiddleware = _iaf.Redux.applyMiddleware;
-	var createStore = _iaf.Redux.createStore;
-	exports.applyMiddleware = applyMiddleware;
-	exports.createStore = createStore;
+	exports.default = _iaf.ReduxThunk;
+	var thunkMiddleware = _iaf.ReduxThunk.thunkMiddleware;
+	exports.thunkMiddleware = thunkMiddleware;
 
 /***/ },
 /* 7 */
@@ -328,21 +319,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.createStore = exports.applyMiddleware = undefined;
 
-	var _addQuoteContainer = __webpack_require__(8);
+	var _iaf = __webpack_require__(3);
 
-	var _addQuoteContainer2 = _interopRequireDefault(_addQuoteContainer);
-
-	var _AddQuote = __webpack_require__(9);
-
-	var _AddQuote2 = _interopRequireDefault(_AddQuote);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AddQuoteContainer = (0, _addQuoteContainer2.default)(_AddQuote2.default);
-
-	// export the container
-	exports.default = AddQuoteContainer;
+	exports.default = _iaf.Redux;
+	var applyMiddleware = _iaf.Redux.applyMiddleware;
+	var createStore = _iaf.Redux.createStore;
+	exports.applyMiddleware = applyMiddleware;
+	exports.createStore = createStore;
 
 /***/ },
 /* 8 */
@@ -354,7 +339,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _reactRedux = __webpack_require__(4);
+	var _addQuoteContainer = __webpack_require__(9);
+
+	var _addQuoteContainer2 = _interopRequireDefault(_addQuoteContainer);
+
+	var _AddQuote = __webpack_require__(10);
+
+	var _AddQuote2 = _interopRequireDefault(_AddQuote);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddQuoteContainer = (0, _addQuoteContainer2.default)(_AddQuote2.default);
+
+	// export the container
+	exports.default = AddQuoteContainer;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(5);
 
 	var _reactRedux2 = _interopRequireDefault(_reactRedux);
 
@@ -375,7 +385,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -392,11 +402,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ProductSelectorContainer = __webpack_require__(10);
+	var _ProductSelectorContainer = __webpack_require__(11);
 
 	var _ProductSelectorContainer2 = _interopRequireDefault(_ProductSelectorContainer);
 
-	var _TermSelectorContainer = __webpack_require__(14);
+	var _TermSelectorContainer = __webpack_require__(15);
 
 	var _TermSelectorContainer2 = _interopRequireDefault(_TermSelectorContainer);
 
@@ -532,7 +542,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = AddQuote;
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -541,11 +551,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _productSelectorContainer = __webpack_require__(11);
+	var _productSelectorContainer = __webpack_require__(12);
 
 	var _productSelectorContainer2 = _interopRequireDefault(_productSelectorContainer);
 
-	var _ProductSelector = __webpack_require__(13);
+	var _ProductSelector = __webpack_require__(14);
 
 	var _ProductSelector2 = _interopRequireDefault(_ProductSelector);
 
@@ -560,7 +570,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ProductSelectorContainer;
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -569,11 +579,11 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _reactRedux = __webpack_require__(4);
+	var _reactRedux = __webpack_require__(5);
 
 	var _reactRedux2 = _interopRequireDefault(_reactRedux);
 
-	var _quoteActionCreators = __webpack_require__(12);
+	var _quoteActionCreators = __webpack_require__(13);
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
@@ -605,7 +615,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -623,9 +633,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		return { "type": "select-term", "id": termId };
 	}
+	console.log(1);
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -717,7 +728,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ProductSelector;
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -726,11 +737,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _termSelectorContainer = __webpack_require__(15);
+	var _termSelectorContainer = __webpack_require__(16);
 
 	var _termSelectorContainer2 = _interopRequireDefault(_termSelectorContainer);
 
-	var _TermSelector = __webpack_require__(16);
+	var _TermSelector = __webpack_require__(17);
 
 	var _TermSelector2 = _interopRequireDefault(_TermSelector);
 
@@ -746,7 +757,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = TermSelectorContainer;
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -755,11 +766,11 @@ return /******/ (function(modules) { // webpackBootstrap
 		value: true
 	});
 
-	var _reactRedux = __webpack_require__(4);
+	var _reactRedux = __webpack_require__(5);
 
 	var _reactRedux2 = _interopRequireDefault(_reactRedux);
 
-	var _quoteActionCreators = __webpack_require__(12);
+	var _quoteActionCreators = __webpack_require__(13);
 
 	var actionCreators = _interopRequireWildcard(_quoteActionCreators);
 
@@ -791,7 +802,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -882,7 +893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = TermSelector;
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -934,7 +945,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -949,7 +960,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ShowQuote = __webpack_require__(19);
+	var _ShowQuote = __webpack_require__(20);
 
 	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
 
@@ -1014,7 +1025,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = AddAQuote;
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1098,7 +1109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1113,7 +1124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ShowQuote = __webpack_require__(19);
+	var _ShowQuote = __webpack_require__(20);
 
 	var _ShowQuote2 = _interopRequireDefault(_ShowQuote);
 
@@ -1189,7 +1200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = DeleteQuote;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1204,7 +1215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _QuoteList = __webpack_require__(22);
+	var _QuoteList = __webpack_require__(23);
 
 	var _QuoteList2 = _interopRequireDefault(_QuoteList);
 
@@ -1255,7 +1266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ListQuotes;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1299,16 +1310,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			})
 		);
 	};
-
-/***/ },
-/* 23 */
-/***/ function(module, exports) {
-
-	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
-
-	/*eslint-env node, browser*/
-	module.exports = (typeof window === "undefined" ? global : window).iaf.rating.iaf;
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }
 /******/ ])

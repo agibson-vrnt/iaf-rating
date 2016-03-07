@@ -2,7 +2,7 @@
 
 var path = require( "path" );
 
-module.exports = {
+module.exports = [ {
 
     entry: {
 
@@ -46,4 +46,48 @@ module.exports = {
 
     }
 
-};
+}, {
+
+    entry: {
+
+        "logic": path.resolve( __dirname, "js/logic.js" )
+
+    },
+    output: {
+
+        path: path.resolve( __dirname, "../../HelloWorld/lib" ),
+        publicPath: "/",
+        filename: "[name].js",
+        libraryTarget: "umd"
+
+    },
+    resolve: {
+
+        alias: {
+
+            "react-redux": path.resolve( __dirname, "js/proxies/react-redux" ),
+            "react": path.resolve( __dirname, "js/proxies/react" ),
+            "redux": path.resolve( __dirname, "js/proxies/redux" ),
+            "redux-thunk": path.resolve( __dirname, "js/proxies/redux-thunk" )
+
+        }
+
+    },
+    module: {
+
+        "loaders": [
+
+            {
+                test: /.jsx?$/,
+                loader: "babel-loader",
+                exclude: /node_modules/,
+                query: {
+                    presets: [ "es2015", "react" ]
+                }
+            }
+
+        ]
+
+    }
+
+} ];
